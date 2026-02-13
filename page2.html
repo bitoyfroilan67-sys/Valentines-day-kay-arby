@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>our forever valentine ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: linear-gradient(145deg, #fce7f0 0%, #fdd8e6 50%, #ffdee9 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* floating elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.3;
+            animation: floatAround 15s infinite linear;
+            user-select: none;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0.2; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* main container */
+        .portfolio-full {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 25px;
+        }
+
+        /* hero section */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 30px;
+            background: rgba(255, 240, 245, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 80px;
+            margin-bottom: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 30px 60px rgba(200, 100, 130, 0.2);
+        }
+
+        .hero-title {
+            font-size: 7rem;
+            font-family: 'Great Vibes', cursive;
+            color: #b33856;
+            text-shadow: 
+                4px 4px 0 rgba(255, 210, 225, 0.8),
+                8px 8px 20px rgba(200, 70, 100, 0.3);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation: titleGlow 3s infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 4px 4px 0 rgba(255, 210, 225, 0.8), 8px 8px 20px rgba(200, 70, 100, 0.3); }
+            50% { text-shadow: 6px 6px 0 rgba(255, 200, 220, 0.9), 12px 12px 30px rgba(220, 60, 100, 0.5); }
+        }
+
+        .hero-sub {
+            font-size: 2.5rem;
+            color: #ac4e68;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 20px 50px;
+            border-radius: 80px;
+            border: 2px solid white;
+            margin: 20px 0 40px;
+        }
+
+        .hero-quote {
+            font-size: 2rem;
+            color: #8e5a68;
+            max-width: 800px;
+            margin: 20px auto;
+            font-style: italic;
+        }
+
+        .scroll-indicator {
+            margin-top: 60px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* timeline section */
+        .timeline-section {
+            padding: 70px 30px;
+            background: rgba(255, 235, 240, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 90px;
+            margin-bottom: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .section-title {
+            font-size: 4.5rem;
+            font-family: 'Great Vibes', cursive;
+            color: #b84260;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "❤️";
+            font-size: 3rem;
+            display: block;
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            padding: 30px;
+            border: 3px solid white;
+            box-shadow: 0 15px 30px rgba(180, 70, 90, 0.2);
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(190, 60, 90, 0.3);
+        }
+
+        .timeline-year {
+            font-size: 2.5rem;
+            color: #c24a6a;
+            font-weight: bold;
+            border-bottom: 3px dashed #ffb0c0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-memory {
+            font-size: 1.8rem;
+            color: #884b5c;
+            line-height: 1.6;
+        }
+
+        /* gallery sections */
+        .gallery-section {
+            padding: 60px 30px;
+            background: rgba(250, 235, 240, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 90px;
+            margin-bottom: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 45px;
+            padding: 30px 20px;
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 40px 40px 30px 30px;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(160, 60, 80, 0.25),
+                0 0 0 3px #fff,
+                0 0 0 6px #ffe2ec;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            animation: cardAppear 0.8s backwards;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 30px 50px rgba(180, 50, 80, 0.35),
+                0 0 0 4px #fff,
+                0 0 0 10px #ffc9d6;
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .photo-frame {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #fcd7e0;
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .memory-card:hover .photo-image {
+            transform: scale(1.08);
+        }
+
+        .photo-heart {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 8px white);
+            animation: heartBeat 2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            35% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        .memory-caption {
+            padding: 25px 20px;
+            font-size: 1.9rem;
+            background: #fff9fc;
+            color: #aa405a;
+            font-weight: 500;
+            text-align: center;
+            border-top: 2px dashed #ffb5c6;
+        }
+
+        .caption-date {
+            font-size: 1.4rem;
+            color: #b36b7d;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* love notes section */
+        .notes-section {
+            padding: 70px 40px;
+            background: rgba(255, 230, 240, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 100px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .note-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 40px 25px;
+            border-radius: 60px;
+            border: 2px solid white;
+            font-size: 1.8rem;
+            color: #944d63;
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        .note-card:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.03);
+        }
+
+        .note-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* stats section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 50px 30px;
+            background: rgba(255, 245, 250, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 80px;
+            margin-bottom: 60px;
+            border: 2px solid white;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #b73e5c;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.6rem;
+            color: #8b5567;
+            margin-top: 15px;
+        }
+
+        /* message section */
+        .message-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(255, 220, 235, 0.7), rgba(255, 200, 220, 0.7));
+            backdrop-filter: blur(8px);
+            border-radius: 120px;
+            margin-bottom: 50px;
+            text-align: center;
+            border: 3px solid white;
+        }
+
+        .love-letter {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 2rem;
+            color: #9e4a62;
+            line-height: 1.8;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 70px;
+            border: 2px dashed #ff99bb;
+        }
+
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #b33b59;
+            margin-top: 40px;
+        }
+
+        /* footer */
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 225, 235, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            border: 2px solid white;
+        }
+
+        .footer-hearts {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: pulseHearts 2s infinite;
+        }
+
+        @keyframes pulseHearts {
+            0%, 100% { letter-spacing: normal; }
+            50% { letter-spacing: 10px; }
+        }
+
+        .back-link {
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            color: #a53e5a;
+            text-decoration: none;
+            background: white;
+            padding: 15px 50px;
+            border-radius: 50px;
+            border: 3px solid #ffb6c9;
+            transition: 0.3s;
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        
+        .back-link a:hover {
+            background: #ffe2ea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(200, 80, 110, 0.3);
+        }
+
+        /* guide overlay */
+        .image-guide {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 235, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid #ff99bb;
+            z-index: 100;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 350px;
+        }
+
+        .image-guide code {
+            background: #ffe2ec;
+            padding: 3px 10px;
+            border-radius: 30px;
+            color: #b3415c;
+        }
+
+        @media (max-width: 700px) {
+            .hero-title { font-size: 4rem; }
+            .hero-sub { font-size: 1.8rem; }
+            .section-title { font-size: 3rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-elements" id="floatElements"></div>
+
+    <div class="portfolio-full">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <h1 class="hero-title">Our Forever Valentine</h1>
+            <div class="hero-sub">every moment with you is magic</div>
+            <div class="hero-quote">"In you, I've found the love of my life and my closest, truest friend."</div>
+            <div class="scroll-indicator">👇 scroll down to our story</div>
+        </section>
+
+        <!-- TIMELINE SECTION -->
+        <section class="timeline-section">
+            <h2 class="section-title">our journey through time</h2>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-year">✨ 2022 ✨</div>
+                    <div class="timeline-memory">the day we met • coffee shop smiles • first date butterflies</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">💕 2023 💕</div>
+                    <div class="timeline-memory">first vacation • meeting families • a thousand inside jokes</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">💖 2024 💖</div>
+                    <div class="timeline-memory">moving in together • midnight talks • building our home</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">💘 2025 💘</div>
+                    <div class="timeline-memory">every day with you is Valentine's • growing old together</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION 1 -->
+        <section class="gallery-section">
+            <h2 class="section-title">our precious moments</h2>
+            <div class="gallery-grid">
+                <!-- Card 1: image1.jpg - sunset selfie -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image1.jpg" alt="sunset selfie"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffc0cb/ffffff?text=Sunset+Selfie'">
+                        <div class="photo-heart">💕</div>
+                    </div>
+                    <div class="memory-caption">
+                        Your first flower sa valentines day
+                        <div class="caption-date">📍 feb 15 2023</div>
+                    </div>
+                </div>
+                <!-- Card 2: image2.jpg - photobooth fun -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image2.jpg" alt="photobooth"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffb3b3/ffffff?text=Photobooth+Fun'">
+                        <div class="photo-heart">🎈</div>
+                    </div>
+                    <div class="memory-caption">
+                        simple date afterclass
+                        <div class="caption-date">📍 Katong Kitang duha sa park</div>
+                    </div>
+                </div>
+                <!-- Card 3: image3.jpg - birthday cake smash -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image3.jpg" alt="birthday"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffa5b0/ffffff?text=Birthday+Cake'">
+                        <div class="photo-heart">🥰</div>
+                    </div>
+                    <div class="memory-caption">
+                        E-park date
+                        <div class="caption-date">Dec 28, 2024</div>
+                    </div>
+                </div>
+                <!-- Card 4: image4.jpg - first snow together -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image10.jpg" alt="snow"
+                             onerror="this.src='https://via.placeholder.com/500x500/d9b3ff/ffffff?text=First+Snow'">
+                        <div class="photo-heart">❄️</div>
+                    </div>
+                    <div class="memory-caption">
+                        Simple dateb but precious kaayu sako
+                        <div class="caption-date">🌨️ April 9 2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE NOTES SECTION -->
+        <section class="notes-section">
+            <h2 class="section-title">little love notes</h2>
+            <div class="notes-grid">
+                <div class="note-card">
+                    <div class="note-icon">💌</div>
+                    "You make my heart smile every single day."
+                </div>
+                <div class="note-card">
+                    <div class="note-icon">✨</div>
+                    "With you, every moment is magical."
+                </div>
+                <div class="note-card">
+                    <div class="note-icon">🌸</div>
+                    "You're my favorite hello and hardest goodbye."
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION 2 -->
+        <section class="gallery-section">
+            <h2 class="section-title">more memories together</h2>
+            <div class="gallery-grid">
+                <!-- Card 5: image5.jpg - matching pyjamas -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image5.jpg" alt="matching"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffd1dc/ffffff?text=Matching+Pyjamas'">
+                        <div class="photo-heart">🎄</div>
+                    </div>
+                    <div class="memory-caption">
+                        Ulian na gikan tagum
+                        <div class="caption-date">🎄 Memorable kaayu sako</div>
+                    </div>
+                </div>
+                <!-- Card 6: image6.jpg - camping trip -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image14.jpg" alt="camping"
+                             onerror="this.src='https://via.placeholder.com/500x500/c1e1c1/ffffff?text=Camping+Trip'">
+                        <div class="photo-heart">🏕️</div>
+                    </div>
+                    <div class="memory-caption">
+                        Graduation day atong senior high ta
+                        <div class="caption-date">🏞️ summer 2023</div>
+                    </div>
+                </div>
+                <!-- Card 7: image7.jpg - airport reunion -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image13.jpg" alt="airport"
+                             onerror="this.src='https://via.placeholder.com/500x500/fdd0f0/ffffff?text=Airport+Hello'">
+                        <div class="photo-heart"></div>
+                    </div>
+                    <div class="memory-caption">
+                        Ang day na gi plan nako imong 2nd flower
+                        <div class="caption-date">❤️ Oct 28, 2023</div>
+                    </div>
+                </div>
+                <!-- Card 8: image8.jpg - ramen date night -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image15.jpg" alt="ramen"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffe0b5/ffffff?text=Ramen+Date'">
+                        <div class="photo-heart"></div>
+                    </div>
+                    <div class="memory-caption">
+                        Imong birthday
+                        <div class="caption-date">🎁 feb 1, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">1,205</div>
+                <div class="stat-label">days together</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">365+</div>
+                <div class="stat-label">smiles shared</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">love</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Since</div>
+                <div class="stat-label">Grade 12 Senior Highschool</div>
+            </div>
+        </section>
+
+        <!-- LOVE LETTER SECTION -->
+        <section class="message-section">
+            <div class="love-letter">
+                <p>My dearest love,</p>
+                <p style="margin: 30px 0;">Happy Valentine’s day lalovee ko 💕 Even karon love gihigugma japun kaayu tkaa dlii jud nako palpakon akong paghigugma saimo love alwayss jud ko maningkamot for the both of us lovee ma hatag nako saimo tanan lovee nga unsaon ka pag love kaayu ug palipayon ka alwayss lovee no matter what satong situation love satong mood satong relasyon love. Alwayss remember lovee i love na lovee kaayu tkaaa, I’m here alwayss for uuu laloveee tabangan tkaa sa tanan nimong kalisod ug kalipay hehehehe i lovee youuu sooo muchh laloveee 💗💕.</p>
+                <p>Forever yours,</p>
+                <div class="signature">your valentine</div>
+            </div>
+        </section>
+
+        <!-- FINAL GALLERY SECTION -->
+        <section class="gallery-section">
+            <h2 class="section-title">and so many more...</h2>
+            <div class="gallery-grid">
+                <!-- Card 9: image9.jpg - dancing -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image9.jpg" alt="dancing"
+                             onerror="this.src='https://via.placeholder.com/500x500/fac8d0/ffffff?text=Dancing'">
+                        <div class="photo-heart">💃</div>
+                    </div>
+                    <div class="memory-caption">
+                        dancing in the kitchen
+                        <div class="caption-date">🎵 our song</div>
+                    </div>
+                </div>
+                <!-- Card 10: image10.jpg - cafe dates -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image10.jpg" alt="cafe"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffe0c0/ffffff?text=Cafe+Dates'">
+                        <div class="photo-heart">☕</div>
+                    </div>
+                    <div class="memory-caption">
+                        lazy sunday cafe
+                        <div class="caption-date">☀️ every weekend</div>
+                    </div>
+                </div>
+                <!-- Card 11: image11.jpg - extra memory -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image11.jpg" alt="memory"
+                             onerror="this.src='https://via.placeholder.com/500x500/fad0d8/ffffff?text=Our+Memory'">
+                        <div class="photo-heart">💖</div>
+                    </div>
+                    <div class="memory-caption">
+                        another beautiful day
+                        <div class="caption-date">✨ together always</div>
+                    </div>
+                </div>
+                <!-- Card 12: image12.jpg - extra memory -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image12.jpg" alt="memory"
+                             onerror="this.src='https://via.placeholder.com/500x500/fbe0e8/ffffff?text=Special+Day'">
+                        <div class="photo-heart">💘</div>
+                    </div>
+                    <div class="memory-caption">
+                        a day to remember
+                        <div class="caption-date">💕 forever in my heart</div>
+                    </div>
+                </div>
+                <!-- Card 13: image13.jpg - extra memory -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image13.jpg" alt="memory"
+                             onerror="this.src='https://via.placeholder.com/500x500/fcd0e0/ffffff?text=Perfect+Moment'">
+                        <div class="photo-heart">💗</div>
+                    </div>
+                    <div class="memory-caption">
+                        perfect moment
+                        <div class="caption-date">🌟 just us</div>
+                    </div>
+                </div>
+                <!-- Card 14: image14.jpg - extra memory -->
+                <div class="memory-card">
+                    <div class="photo-frame">
+                        <img class="photo-image" src="images/image14.jpg" alt="memory"
+                             onerror="this.src='https://via.placeholder.com/500x500/ffd5e0/ffffff?text=Happiness'">
+                        <div class="photo-heart">💓</div>
+                    </div>
+                    <div class="memory-caption">
+                        happiness is you
+                        <div class="caption-date">❤️ my everything</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-hearts">❤️ 💖 💘 💗</div>
+            <div style="font-size: 2.5rem; color: #b84a64; margin-bottom: 20px;">you + me = forever</div>
+            <div class="back-link">
+                <a href="page1.html">← back to beginning</a>
+            </div>
+            <div style="margin-top: 30px; color: #9e6476;">made with love, for you 💕</div>
+        </footer>
+    </div>
+
+    <!-- floating elements generator -->
+    <script>
+        function createFloatElements() {
+            const container = document.getElementById('floatElements');
+            const symbols = ['❤️', '💖', '💘', '💝', '🌸', '🌹', '✨', '💫', '🎈', '💕'];
+            
+            for (let i = 0; i < 40; i++) {
+                const el = document.createElement('div');
+                el.className = 'float-item';
+                el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (1 + Math.random() * 3) + 'rem';
+                el.style.animationDuration = (8 + Math.random() * 15) + 's';
+                el.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(el);
+            }
+        }
+        window.addEventListener('load', createFloatElements);
+    </script>
+
+  
+</body>
+</html>
